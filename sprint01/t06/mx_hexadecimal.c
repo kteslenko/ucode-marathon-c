@@ -5,7 +5,7 @@ void mx_hexadecimal(void) {
         if (i == 58) {
             i = 65;
         }
-        
+
         mx_printchar((char)i);
     }
 
