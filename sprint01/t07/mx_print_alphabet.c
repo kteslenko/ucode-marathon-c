@@ -5,7 +5,7 @@ void mx_print_alphabet(void) {
         int ch = i;
 
         if (ch % 2 == 0) {
-            ch ^= 32;
+            ch += 32;
         }
 
         mx_printchar((char)ch);
