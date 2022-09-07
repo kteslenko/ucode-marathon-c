@@ -3,7 +3,7 @@ int mx_max(int a, int b, int c) {
         && a > c) {
         return a;
     }
-    else if (b > c) {
+    if (b > c) {
         return b;
     }
 
