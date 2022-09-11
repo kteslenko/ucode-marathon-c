@@ -29,13 +29,13 @@ static void right(int first, const int n, int second) {
 }
 
 static void side_first(int third) {
-        for (int j = 0; j <= third; j++) {
-            if (j == third) {
-                mx_printchar('\\');
-                break;
-            }
-            mx_printchar(' ');
+    for (int j = 0; j <= third; j++) {
+        if (j == third) {
+            mx_printchar('\\');
+            break;
         }
+        mx_printchar(' ');
+    }
 }
 
 static void side_second(int third) {
