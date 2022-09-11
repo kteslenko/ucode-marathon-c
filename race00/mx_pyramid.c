@@ -1,6 +1,6 @@
 void mx_printchar(char c);
 
-static void mx_left(int first, const int n) {
+static void left(int first, const int n) {
     for (int i = first; i != 1; i--)
         mx_printchar(' ');
     mx_printchar('/');
@@ -15,7 +15,7 @@ static void mx_left(int first, const int n) {
     }
 }
 
-static void mx_right(int first, const int n, int second) {
+static void right(int first, const int n, int second) {
     if (first <= n - 1 && first != 1) {
         for (int j = 0; j < second; j++) {
             if (j + 1 == second) {
@@ -27,7 +27,7 @@ static void mx_right(int first, const int n, int second) {
     }
 }
 
-static void mx_side_first(int first, const int n, int third) {
+static void side_first(const int n, int third) {
         for (int j = 0; j <= third; j++) {
             if (j == third) {
                 mx_printchar('\\');
@@ -37,7 +37,7 @@ static void mx_side_first(int first, const int n, int third) {
         }
 }
 
-static void mx_side_second(int first, const int n, int third) {
+static void side_second(const int n, int third) {
     for (int j = third; j >= 0; j--) {
         if (j - 1 == 0) {
             mx_printchar('|');
@@ -53,15 +53,15 @@ static void mx_draw(const int n) {
     int third = 0;
 
     while (first != 0) {
-        mx_left(first, n);
-        mx_right(first, n, second);
+        left(first, n);
+        right(first, n, second);
         second += 2;
         if (first > n / 2) {
-            mx_side_first(first, n, third);
+            side_first(first, n, third);
             third++;
         }
         if (first <= n / 2 && first != 1) {
-            mx_side_second(first, n, third);
+            side_second(first, n, third);
             third--;
         }
         mx_printchar('\n');
