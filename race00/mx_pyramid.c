@@ -27,7 +27,7 @@ static void right(int first, const int n, int second) {
     }
 }
 
-static void side_first(const int n, int third) {
+static void side_first(int third) {
         for (int j = 0; j <= third; j++) {
             if (j == third) {
                 mx_printchar('\\');
@@ -37,7 +37,7 @@ static void side_first(const int n, int third) {
         }
 }
 
-static void side_second(const int n, int third) {
+static void side_second(int third) {
     for (int j = third; j >= 0; j--) {
         if (j - 1 == 0) {
             mx_printchar('|');
@@ -57,11 +57,11 @@ static void mx_draw(const int n) {
         right(first, n, second);
         second += 2;
         if (first > n / 2) {
-            side_first(first, n, third);
+            side_first(third);
             third++;
         }
         if (first <= n / 2 && first != 1) {
-            side_second(first, n, third);
+            side_second(third);
             third--;
         }
         mx_printchar('\n');
