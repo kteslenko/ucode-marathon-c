@@ -16,7 +16,8 @@ static void left(int first, const int n) {
 }
 
 static void right(int first, const int n, int second) {
-    if (first <= n - 1 && first != 1) {
+    if (first <= n - 1
+        && first != 1) {
         for (int j = 0; j < second; j++) {
             if (j + 1 == second) {
                 mx_printchar('\\');
@@ -47,7 +48,7 @@ static void side_second(int third) {
     }
 }
 
-static void mx_draw(const int n) {
+static void draw(const int n) {
     int first = n;
     int second = 0;
     int third = 0;
@@ -60,7 +61,8 @@ static void mx_draw(const int n) {
             side_first(third);
             third++;
         }
-        if (first <= n / 2 && first != 1) {
+        if (first <= n / 2
+            && first != 1) {
             side_second(third);
             third--;
         }
@@ -70,8 +72,9 @@ static void mx_draw(const int n) {
 }
 
 void mx_pyramid(int n) {
-    if (n > 0 && n % 2 == 0) {
-        mx_draw(n);
+    if (n > 0
+        && n % 2 == 0) {
+        draw(n);
     }
     else {
         return;
