@@ -13,8 +13,7 @@ void mx_str_reverse(char *s) {
     }
     end--;
 
-    while (s != end)
-    {
+    while (s != end) {
         swap(s, end);
         s++;
         end--;
