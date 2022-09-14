@@ -1,6 +1,6 @@
 int mx_strcmp(const char *s1, const char *s2);
 
-static void swap(char** a, char** b) {
+static void swap(char **a, char **b) {
     char* temp = *a;
 
     *a = *b;
