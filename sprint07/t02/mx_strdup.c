@@ -3,7 +3,13 @@ char *mx_strnew(const int size);
 char *mx_strcpy(char *dst, const char *src);
 
 char *mx_strdup(const char *str) {
-    char *new_str = mx_strnew(mx_strlen(str));
+    char *new_str;
+
+    if (str == 0) {
+        return 0;
+    }
+
+    new_str = mx_strnew(mx_strlen(str));
 
     if (new_str == 0) {
         return 0;
