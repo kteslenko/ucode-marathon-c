@@ -1,7 +1,5 @@
 #include "nbr_to_hex.h"
 
-#include <stdio.h>
-
 static int get_len(unsigned long nbr) {
     int len = 1;
 
@@ -13,7 +11,7 @@ static int get_len(unsigned long nbr) {
 }
 
 char *mx_nbr_to_hex(unsigned long nbr) {
-    static const char* digits = "0123456789ABCDEF";
+    static const char* digits = "0123456789abcdef";
     int len = get_len(nbr);
     char *str = mx_strnew(len);
 
