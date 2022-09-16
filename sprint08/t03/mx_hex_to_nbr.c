@@ -14,7 +14,11 @@ static int hex_digit_to_dec(char digit) {
 }
 
 unsigned long mx_hex_to_nbr(const char *hex) {
-    int nbr = 0;
+    unsigned long nbr = 0;
+
+    if (hex == 0) {
+        return 0;
+    }
 
     for (int i = 0; hex[i] != '\0'; i++) {
         int digit = hex_digit_to_dec(hex[i]);

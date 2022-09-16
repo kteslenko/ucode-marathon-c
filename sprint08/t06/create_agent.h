@@ -1,3 +1,7 @@
+#pragma once
+
+#include <stdlib.h>
+
 #include "agent.h"
 
 int mx_strlen(const char *s);

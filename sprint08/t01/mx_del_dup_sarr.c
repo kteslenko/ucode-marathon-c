@@ -1,7 +1,5 @@
 #include "duplicate.h"
 
-#include <stdlib.h>
-
 static int is_duplicate(const int *arr, int idx) {
     for (int i = idx - 1; i >= 0; i--) {
         if (arr[i] == arr[idx]) {

@@ -1,7 +1,5 @@
 #include "create_agent.h"
 
-#include <stdlib.h>
-
 t_agent *mx_create_agent(char *name, int power, int strength) {
     t_agent *agent;
 
