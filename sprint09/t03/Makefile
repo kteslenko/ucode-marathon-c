@@ -21,6 +21,6 @@ uninstall:
 	rm -f minilibmx.a
 
 clean:
-	rm -rf obj
+	rm -rf $(OBJECTS)
 
 reinstall: uninstall all
