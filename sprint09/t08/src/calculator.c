@@ -9,8 +9,8 @@ static t_operation *create_operation(char op, int (*f)(int, int)) {
 
 static t_operation **create_operations() {
     t_operation **operations = malloc(sizeof(t_operation*) * 6);
-    operations[0] = create_operation('+', mx_add);
-    operations[1] = create_operation('-', mx_sub);
+    operations[0] = create_operation('-', mx_sub);
+    operations[1] = create_operation('+', mx_add);
     operations[2] = create_operation('*', mx_mul);
     operations[3] = create_operation('/', mx_div);
     operations[4] = create_operation('%', mx_mod);
@@ -18,23 +18,35 @@ static t_operation **create_operations() {
     return operations;
 }
 
-static t_operation *get_operation(char *op_str) {
-    t_operation **operations;
+static int parse_operator(char *op_str, enum e_operation *operation) {
+    static const char operators[] = {'-', '+', '*', '/', '%'};
     char op;
-
+    
     if (op_str == NULL
         || mx_strlen(op_str) != 1)
-        return NULL;
+        return -1;
 
     op = op_str[0];
-    operations = create_operations();
-    
-    for (int i = 0; operations[i] != NULL; i++) {
-        if (operations[i]->op == op) {
-            return operations[i];
+
+    for (int i = 0; i < 5; i++) {
+        if (operators[i] == op) {
+            *operation = (enum e_operation)i;
+            return 0;
         }
     }
-    return NULL;
+
+    return -1;
+}
+
+static t_operation *get_operation(char *op_str) {
+    t_operation **operations;
+    enum e_operation operation;
+
+    if (parse_operator(op_str, &operation) != 0)
+        return NULL;
+
+    operations = create_operations();
+    return operations[(int)operation];
 }
 
 static void print_usage() {
@@ -81,4 +93,3 @@ int main(int argc, char *argv[]) {
     mx_printint(operation->f(operands[0], operands[1]));
     mx_printstr("\n");
 }
-
