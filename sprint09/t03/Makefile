@@ -1,27 +1,26 @@
 CC = clang
 CFLAGS = -c -std=c11 -Wall -Wextra -Werror -Wpedantic
-OBJDIR = obj
 SOURCES = $(wildcard src/*.c)
-OBJECTS = $(SOURCES:src/%.c=$(OBJDIR)/%.o)
+OBJECTS = $(SOURCES:src/%.c=obj/%.o)
 
 all: MINILIBMX
 
 MINILIBMX: $(OBJECTS)
 	ar rsc minilibmx.a $^
 
-$(OBJDIR)/mx_atoi.o $(OBJDIR)/mx_printint.o: inc/header.h
+obj/mx_atoi.o obj/mx_printint.o: inc/header.h
 
-$(OBJDIR)/%.o: src/%.c | $(OBJDIR)
+obj/%.o: src/%.c | obj
 	$(CC) $(CFLAGS) -o $@ $<
 
-$(OBJDIR):
+obj:
 	mkdir -p $@
 
 uninstall:
-	rm -rf $(OBJDIR)
+	rm -rf obj
 	rm -f minilibmx.a
 
 clean:
-	rm -rf $(OBJDIR)
+	rm -rf obj
 
 reinstall: uninstall all
