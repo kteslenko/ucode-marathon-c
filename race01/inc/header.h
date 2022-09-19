@@ -39,6 +39,7 @@ char *mx_strnew(const int size);
 char *mx_strdup(const char *str);
 char *mx_strcpy(char *dst, const char *src);
 char *mx_strncpy(char *dst, const char *src, int len);
+char *mx_strtrim(const char *str);
 
 bool matches(long number, const char *pattern); // Check if number matches the pattern
 
