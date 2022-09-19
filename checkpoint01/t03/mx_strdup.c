@@ -49,5 +49,5 @@ char *mx_strdup(const char *str) {
         new_str[i] = str[i];
     }
 
-    return mx_strcpy(new_str, str);
+    return new_str;
 }
