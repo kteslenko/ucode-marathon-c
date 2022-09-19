@@ -10,6 +10,12 @@ int ntoi(t_number *number) {
     return result;
 }
 
+static bool is_negative_zero(t_number *number) {
+    return number->pattern == 0
+           && number->count > 0
+           && number->mults[0] < 0;
+}
+
 bool inc(t_number *number) {
     for (int i = 0; i < number->count; i++) {
         number->digits[i]++;
@@ -17,6 +23,10 @@ bool inc(t_number *number) {
         if (number->digits[i] != 0) {
             return false;
         }
+    }
+
+    if (is_negative_zero(number)) {
+        number->digits[0]++;
     }
 
     return true;
@@ -73,6 +83,10 @@ t_number *parse_pattern(const char *pattern) {
         }
         number->pattern += ctod(pattern[i]) * mult;
         mult *= 10;
+    }
+
+    if (is_negative_zero(number)) {
+        number->digits[0]++;
     }
 
     return number;

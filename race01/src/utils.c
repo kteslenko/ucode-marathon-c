@@ -9,16 +9,22 @@ int ctod(char ch) {
 }
 
 bool matches(int number, const char *pattern) {
-    int len = mx_strlen(pattern);
+    if (pattern[0] == '-') {
+        if (number >= 0) {
+            return false;
+        }
+        number *= -1;
+        pattern++;
+    }
 
-    for (int i = len - 1; i >= 0; i--) {
+    for (int i = mx_strlen(pattern) - 1; i >= 0; i--) {
         if (pattern[i] != '?' && number % 10 != ctod(pattern[i])) {
             return false;
         }
         number /= 10;
     }
 
-    return true;
+    return number == 0;
 }
 
 int ipow(int n, unsigned int pow) {
