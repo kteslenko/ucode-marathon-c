@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef struct s_number {
     long pattern;
@@ -9,6 +10,12 @@ typedef struct s_number {
     long *mults;
     int count;
 }              t_number;
+
+typedef struct s_operation{
+    int size; 
+    char *op;
+    long (**f)(long a, long b);
+}              t_operation;
 
 long ntol(t_number *number); // Converts number to long
 bool inc(t_number *number); // Increments the number, returns true if number passed the whole cycle
@@ -31,3 +38,12 @@ bool matches(long number, const char *pattern); // Check if number matches the p
 
 int mx_atoi(const char *str);
 long lpow(long n, unsigned int pow);
+
+t_operation *def_op(char c);
+long add(long a, long b);
+long sub(long a, long b);
+long mul(long a, long b);
+long divis(long a, long b);
+
+void print_res(t_operation *ops, t_number *num1, t_number *num2, const char *pattern);
+
