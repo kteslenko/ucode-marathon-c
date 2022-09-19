@@ -8,11 +8,19 @@ int ctod(char ch) {
     return -1;
 }
 
+static bool match_signs(long number, const char *pattern) {
+    if (number < 0) {
+        return pattern[0] == '-';
+    }
+    return pattern[0] != '-';
+}
+
 bool matches(long number, const char *pattern) {
+    if (!match_signs(number, pattern)) {
+        return false;
+    }
+
     if (pattern[0] == '-') {
-        if (number >= 0) {
-            return false;
-        }
         number *= -1;
         pattern++;
     }
