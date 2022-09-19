@@ -8,7 +8,7 @@ int ctod(char ch) {
     return -1;
 }
 
-bool matches(int number, const char *pattern) {
+bool matches(long number, const char *pattern) {
     if (pattern[0] == '-') {
         if (number >= 0) {
             return false;
@@ -27,8 +27,8 @@ bool matches(int number, const char *pattern) {
     return number == 0;
 }
 
-int ipow(int n, unsigned int pow) {
-    int result = 1;
+long lpow(long n, unsigned int pow) {
+    long result = 1;
 
     for (unsigned int i = 0; i < pow; i++) {
         result *= n;

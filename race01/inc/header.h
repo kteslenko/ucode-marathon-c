@@ -4,13 +4,13 @@
 #include <stdbool.h>
 
 typedef struct s_number {
-    int pattern;
+    long pattern;
     int *digits;
-    int *mults;
+    long *mults;
     int count;
 }              t_number;
 
-int ntoi(t_number *number); // Converts number to int
+long ntol(t_number *number); // Converts number to long
 bool inc(t_number *number); // Increments the number, returns true if number passed the whole cycle
 void del_pattern(t_number *number);
 t_number *parse_pattern(const char *pattern);
@@ -27,7 +27,7 @@ char *mx_strdup(const char *str);
 char *mx_strcpy(char *dst, const char *src);
 char *mx_strncpy(char *dst, const char *src, int len);
 
-bool matches(int number, const char *pattern); // Check if number matches the pattern
+bool matches(long number, const char *pattern); // Check if number matches the pattern
 
 int mx_atoi(const char *str);
-int ipow(int n, unsigned int pow);
+long lpow(long n, unsigned int pow);

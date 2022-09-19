@@ -1,7 +1,7 @@
 #include "../inc/header.h"
 
-int ntoi(t_number *number) {
-    int result = number->pattern;
+long ntol(t_number *number) {
+    long result = number->pattern;
 
     for (int i = 0; i < number->count; i++) {
         result += number->digits[i] * number->mults[i];
@@ -49,7 +49,7 @@ static t_number *new_number(int unknown_count) {
 
     number->pattern = 0;
     number->digits = malloc(sizeof(int) * unknown_count);
-    number->mults = malloc(sizeof(int) * unknown_count);
+    number->mults = malloc(sizeof(long) * unknown_count);
     number->count = unknown_count;
 
     return number;
@@ -68,7 +68,7 @@ void del_number(t_number *number) {
 t_number *parse_pattern(const char *pattern) {
     t_number *number = new_number(count_unknown(pattern));
     int unknown_idx = 0;
-    int mult = 1;
+    long mult = 1;
 
     if (pattern[0] == '-') {
         mult = -1;
