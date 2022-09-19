@@ -41,6 +41,9 @@ char *mx_strcpy(char *dst, const char *src);
 char *mx_strncpy(char *dst, const char *src, int len);
 char *mx_strtrim(const char *str);
 
+void check_args(char *argv[], char *operand1, char *operation, char *operand2, char *result, 
+                    int operand1_len, int operation_len, int operand2_len, int result_len);
+
 bool matches(long number, const char *pattern); // Check if number matches the pattern
 
 int mx_atoi(const char *str);
