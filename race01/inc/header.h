@@ -12,6 +12,7 @@ typedef struct s_number {
 
 int ntoi(t_number *number); // Converts number to int
 bool inc(t_number *number); // Increments the number, returns true if number passed the whole cycle
+void del_pattern(t_number *number);
 t_number *parse_pattern(const char *pattern);
 
 int ctod(char ch); // Char to digit. ? = 0

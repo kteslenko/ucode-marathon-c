@@ -45,6 +45,16 @@ static t_number *new_number(int unknown_count) {
     return number;
 }
 
+void del_number(t_number *number) {
+    if (number == NULL)
+        return;
+    if (number->digits != NULL)
+        free(number->digits);
+    if (number->mults != NULL)
+        free(number->mults);
+    free(number);
+}
+
 t_number *parse_pattern(const char *pattern) {
     t_number *number = new_number(count_unknown(pattern));
     int unknown_idx = 0;
