@@ -31,7 +31,7 @@ bool matches(long number, const char *pattern);
 t_operation *def_op(char c);
 void del_op(t_operation *op);
 
-void check_args(const char *operand1, const char *operation,
+bool check_args(const char *operand1, const char *operation,
                 const char *operand2, const char *result);
 
 void print_res(t_operation *ops, t_number *num1, t_number *num2, const char *pattern);

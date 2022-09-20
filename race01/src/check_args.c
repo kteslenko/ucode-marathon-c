@@ -37,21 +37,25 @@ static void show_error(const char *error, const char *value) {
     mx_printerr(": ");
     mx_printerr(value);
     mx_printerr("\n");
-    exit(-1);
 }
 
-void check_args(const char *operand1, const char *operation,
+bool check_args(const char *operand1, const char *operation,
                 const char *operand2, const char *result) {
     if (!check_operation(operation)) {
         show_error("Invalid operation", operation);
+        return false;
     }
     if (!check_pattern(operand1)) {
         show_error("Invalid operand", operand1);
+        return false;
     }
     if (!check_pattern(operand2)) {
         show_error("Invalid operand", operand2);
+        return false;
     }
     if (!check_pattern(result)) {
         show_error("Invalid result", result);
+        return false;
     }
+    return true;
 }
