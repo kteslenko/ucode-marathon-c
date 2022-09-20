@@ -8,6 +8,14 @@ int ctod(char ch) {
     return -1;
 }
 
+int wrap_digit(int digit) {
+    digit %= 10;
+    if (digit < 0) {
+        digit += 10;
+    }
+    return digit;
+}
+
 static bool match_signs(long number, const char *pattern) {
     if (number < 0) {
         return pattern[0] == '-';

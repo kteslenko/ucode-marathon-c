@@ -10,23 +10,42 @@ long ntol(t_number *number) {
     return result;
 }
 
-static bool is_negative_zero(t_number *number) {
-    return number->pattern == 0
-           && number->count > 0
-           && number->mults[0] < 0;
+static bool is_negative(t_number *number) {
+    return number->pattern < 0
+           || (number->count > 0
+           && number->mults[0] < 0);
 }
 
-bool inc(t_number *number) {
+static bool is_negative_zero(t_number *number) {
+    if (number->pattern != 0
+        || number->count == 0
+        || number->mults[0] > 0) {
+        return false;
+    }
+
     for (int i = 0; i < number->count; i++) {
-        number->digits[i]++;
-        number->digits[i] %= 10;
         if (number->digits[i] != 0) {
             return false;
         }
     }
+    
+    return true;
+}
 
-    if (is_negative_zero(number)) {
-        number->digits[0]++;
+bool inc(t_number *number) {
+    int inc = is_negative(number) ? -1 : 1;
+
+    for (int i = 0; i < number->count; i++) {
+        number->digits[i] += inc;
+        number->digits[i] = wrap_digit(number->digits[i]);
+        if (is_negative_zero(number)) {
+            i = -1;
+            continue;
+        }
+        if ((inc > 0 && number->digits[i] != 0)
+            || (inc < 0 && number->digits[i] != 9)) {
+            return false;
+        }
     }
 
     return true;
@@ -77,16 +96,12 @@ t_number *parse_pattern(const char *pattern) {
 
     for (int i = mx_strlen(pattern) - 1; i >= 0; i--) {
         if (pattern[i] == '?') {
-            number->digits[unknown_idx] = 0;
+            number->digits[unknown_idx] = mult < 0 ? 9 : 0;
             number->mults[unknown_idx] = mult;
             unknown_idx++;
         }
         number->pattern += ctod(pattern[i]) * mult;
         mult *= 10;
-    }
-
-    if (is_negative_zero(number)) {
-        number->digits[0]++;
     }
 
     return number;

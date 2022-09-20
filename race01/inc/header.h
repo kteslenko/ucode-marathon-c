@@ -23,6 +23,7 @@ void del_pattern(t_number *number);
 t_number *parse_pattern(const char *pattern);
 
 int ctod(char ch);
+int wrap_digit(int digit);
 
 bool mx_isdigit(int c);
 bool mx_isspace(char c);
