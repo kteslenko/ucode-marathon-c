@@ -35,8 +35,6 @@ void mx_printerr(const char *s);
 void mx_strdel(char **str);
 int mx_strlen(const char *s);
 char *mx_strnew(const int size);
-char *mx_strdup(const char *str);
-char *mx_strcpy(char *dst, const char *src);
 char *mx_strncpy(char *dst, const char *src, int len);
 char *mx_strtrim(const char *str);
 
@@ -44,9 +42,6 @@ void check_args(const char *operand1, const char *operation,
                 const char *operand2, const char *result);
 
 bool matches(long number, const char *pattern);
-
-int mx_atoi(const char *str);
-long lpow(long n, unsigned int pow);
 
 t_operation *def_op(char c);
 long add(long a, long b);

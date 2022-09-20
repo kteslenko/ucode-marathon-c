@@ -35,12 +35,4 @@ bool matches(long number, const char *pattern) {
     return number == 0;
 }
 
-long lpow(long n, unsigned int pow) {
-    long result = 1;
 
-    for (unsigned int i = 0; i < pow; i++) {
-        result *= n;
-    }
-
-    return result;
-}
