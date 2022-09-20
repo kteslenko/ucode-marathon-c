@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 5) {
-	    mx_printerr("usage: ./part_of_the_matrix [operand1] [operation] [operand2] [result]");
+	    mx_printerr("usage: ./part_of_the_matrix [operand1] [operation] [operand2] [result]\n");
 	    return 1;
     }
 
