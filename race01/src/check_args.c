@@ -37,7 +37,7 @@ static void show_error(const char *error, const char *value) {
     mx_printerr(": ");
     mx_printerr(value);
     mx_printerr("\n");
-    exit(0);
+    exit(-1);
 }
 
 void check_args(const char *operand1, const char *operation,

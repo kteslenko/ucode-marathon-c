@@ -3,7 +3,7 @@
 int main(int argc, char *argv[]) {
     if (argc != 5) {
 	    mx_printerr("usage: ./part_of_the_matrix [operand1] [operation] [operand2] [result]\n");
-	    return 1;
+	    return -1;
     }
 
     char *operand1 = mx_strtrim(argv[1]);
