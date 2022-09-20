@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 void mx_printlong(long n) {
     long pow = 1;

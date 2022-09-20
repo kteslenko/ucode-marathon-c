@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 static bool check_operation(const char* operation) {
     return mx_strlen(operation) == 1

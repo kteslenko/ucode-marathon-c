@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 static void print_line(long num1, char op, long num2, long res) {
     mx_printlong(num1);

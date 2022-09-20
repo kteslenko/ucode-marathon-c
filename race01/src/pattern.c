@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 static int count_unknown(const char *pattern) {
     int count = 0;

@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 long ntol(t_number *number) {
     long result = number->pattern;

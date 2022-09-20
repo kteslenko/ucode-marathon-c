@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 t_operation *def_op(char c){
     int idx = 0;

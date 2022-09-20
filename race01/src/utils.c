@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 int ctod(char ch) {
     if (ch >= '0' && ch <= '9')
@@ -42,5 +42,3 @@ bool matches(long number, const char *pattern) {
 
     return number == 0;
 }
-
-
