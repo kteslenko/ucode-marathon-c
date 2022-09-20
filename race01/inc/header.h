@@ -2,7 +2,6 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <unistd.h>
 
 typedef struct s_number {
@@ -18,12 +17,12 @@ typedef struct s_operation{
     long (**f)(long a, long b);
 }              t_operation;
 
-long ntol(t_number *number); // Converts number to long
-bool inc(t_number *number); // Increments the number, returns true if number passed the whole cycle
+long ntol(t_number *number);
+bool inc(t_number *number);
 void del_pattern(t_number *number);
 t_number *parse_pattern(const char *pattern);
 
-int ctod(char ch); // Char to digit. ? = 0
+int ctod(char ch);
 
 bool mx_isdigit(int c);
 bool mx_isspace(char c);
@@ -41,10 +40,10 @@ char *mx_strcpy(char *dst, const char *src);
 char *mx_strncpy(char *dst, const char *src, int len);
 char *mx_strtrim(const char *str);
 
-void check_args(char *argv[], char *operand1, char *operation, char *operand2, char *result, 
-                    int operand1_len, int operation_len, int operand2_len, int result_len);
+void check_args(const char *operand1, const char *operation,
+                const char *operand2, const char *result);
 
-bool matches(long number, const char *pattern); // Check if number matches the pattern
+bool matches(long number, const char *pattern);
 
 int mx_atoi(const char *str);
 long lpow(long n, unsigned int pow);
