@@ -156,11 +156,14 @@ int main(int argc, char *argv[]) {
     if (mx_strcmp(argv[1], "-p") == 0) {
         mx_sort(agents, count(agents), sort_power);
     }
-    if (mx_strcmp(argv[1], "-s") == 0) {
+    else if (mx_strcmp(argv[1], "-s") == 0) {
         mx_sort(agents, count(agents), sort_strength);
     }
-    if (mx_strcmp(argv[1], "-n") == 0) {
+    else if (mx_strcmp(argv[1], "-n") == 0) {
         mx_sort(agents, count(agents), sort_name);
+    } else {
+        mx_printerr("usage: ./parse_agents [-p | -s | -n] [file_name]\n");
+        return -1;
     }
     print_agents(agents);
     mx_exterminate_agents(&agents);
