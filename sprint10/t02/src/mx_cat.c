@@ -24,6 +24,11 @@ int main(int argc, char *argv[]) {
         copy(0, 1);
     }
     for (int i = 1; i < argc; i++) {
+        if (mx_strcmp(argv[i], "-") == 0) {
+            copy(0, 1);
+            continue;
+        }
+
         int src = open(argv[i], O_RDONLY);
         if (src == -1) {
             show_error(argv[i]);
