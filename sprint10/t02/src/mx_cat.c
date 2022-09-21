@@ -23,11 +23,11 @@ int main(int argc, char *argv[]) {
     if (argc == 1) {
         copy(0, 1);
     }
-    else if (argc == 2) {
-        int src = open(argv[1], O_RDONLY);
+    for (int i = 1; i < argc; i++) {
+        int src = open(argv[i], O_RDONLY);
         if (src == -1) {
-            show_error(argv[1]);
-            return -1;
+            show_error(argv[i]);
+            continue;
         }
         copy(src, 1);
         close(src);
