@@ -1,6 +1,6 @@
 #include "header.h"
 
-void show_error(const char *file) {
+static void show_error(const char *file) {
     mx_printerr("mx_cp: ");
     mx_printerr(file);
     mx_printerr(": ");
@@ -8,7 +8,7 @@ void show_error(const char *file) {
     mx_printerr("\n");
 }
 
-void copy(int src, int dst) {
+static void copy(int src, int dst) {
     char buf;
 
     while (read(src, &buf, 1) > 0)
