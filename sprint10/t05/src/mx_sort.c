@@ -7,7 +7,7 @@ void mx_sort(t_agent **arr, int size, bool (*f)(t_agent*, t_agent*)) {
         sorted = 1;
         for (int i = 0; i < size - 1; i++) {
             if (f(arr[i], arr[i + 1])) {
-                int temp = arr[i];
+                t_agent *temp = arr[i];
 
                 arr[i] = arr[i + 1];
                 arr[i + 1] = temp;

@@ -114,7 +114,7 @@ static void print_agents(t_agent **agents) {
 }
 
 bool sort_name(t_agent *a, t_agent *b) {
-    return mx_strcmp(a, b) > 0;
+    return mx_strcmp(a->name, b->name) > 0;
 }
 
 bool sort_power(t_agent *a, t_agent *b) {
@@ -123,6 +123,14 @@ bool sort_power(t_agent *a, t_agent *b) {
 
 bool sort_strength(t_agent *a, t_agent *b) {
     return a->strength > b->strength;
+}
+
+int count(t_agent **agents) {
+    int i = 0;
+    while (agents[i] != NULL) {
+        i++;
+    }
+    return i;
 }
 
 int main(int argc, char *argv[]) {
@@ -145,6 +153,15 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
+    if (mx_strcmp(argv[1], "-p") == 0) {
+        mx_sort(agents, count(agents), sort_power);
+    }
+    if (mx_strcmp(argv[1], "-s") == 0) {
+        mx_sort(agents, count(agents), sort_strength);
+    }
+    if (mx_strcmp(argv[1], "-n") == 0) {
+        mx_sort(agents, count(agents), sort_name);
+    }
     print_agents(agents);
     mx_exterminate_agents(&agents);
     free(str);
