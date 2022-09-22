@@ -151,10 +151,10 @@ static bool sort(const char *filename, const char *field) {
     }
 
     if (mx_strcmp(field, "name") == 0) {
-        mx_sort_list(list, cmp_name);
+        list = mx_sort_list(list, cmp_name);
     }
     else if (mx_strcmp(field, "artist") == 0) {
-        mx_sort_list(list, cmp_artist);
+        list = mx_sort_list(list, cmp_artist);
     }
 
     return write_playlist(list, filename);
