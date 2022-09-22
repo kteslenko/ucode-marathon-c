@@ -21,14 +21,6 @@ static bool check_command(const char *name, int argc, char *argv[]) {
     return false;
 }
 
-// static void remove_playlist(t_list* list) {
-//     while (list != NULL) {
-//         free(list->data);
-//         list = list->next;
-//     }
-//     mx_clear_list(&list);
-// }
-
 static bool read_playlist(const char *filename, t_list **out) {
     char *str = mx_file_to_str(filename);
     t_list *list = NULL;
@@ -125,18 +117,33 @@ static bool remove(const char *filename, const char *index_str) {
     return write_playlist(list, filename);
 }
 
+static char *to_upper(char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 97 && str[i] <= 122) {
+            str[i] -= 32;
+        }
+    }
+    return str;
+}
+
 static bool cmp_name(void *a, void *b) {
     t_song *song_a = (t_song*)a;
     t_song *song_b = (t_song*)b;
     
-    return mx_strcmp(song_a->name, song_b->name) > 0;
+    char *name_a = to_upper(mx_strdup(song_a->name));
+    char *name_b = to_upper(mx_strdup(song_b->name));
+
+    return mx_strcmp(name_a, name_b) > 0;
 }
 
 static bool cmp_artist(void *a, void *b) {
     t_song *song_a = (t_song*)a;
     t_song *song_b = (t_song*)b;
 
-    return mx_strcmp(song_a->artist, song_b->artist) > 0;
+    char *artist_a = to_upper(mx_strdup(song_a->artist));
+    char *artist_b = to_upper(mx_strdup(song_b->artist));
+
+    return mx_strcmp(artist_a, artist_b) > 0;
 }
 
 static bool sort(const char *filename, const char *field) {
