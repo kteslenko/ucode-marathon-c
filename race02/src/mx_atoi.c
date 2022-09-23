@@ -22,9 +22,13 @@ static bool add_with_overflow(long *a, long b) {
     return false;
 }
 
-int mx_atoi(const char *str, int *out) {
+int mx_atoi(const char *str) {
     long result = 0;
     bool negative = false;
+
+    while (mx_isspace(*str)) {
+        str++;
+    }
 
     if (*str == '-'
         || *str == '+') {
@@ -37,16 +41,10 @@ int mx_atoi(const char *str, int *out) {
     while (mx_isdigit(*str)) {
         if (mult_with_overflow(&result, 10)
             || add_with_overflow(&result, (*str - 48))) {
-            *out = negative ? 0 : -1;
-            return -1;
+            return negative ? 0 : -1;
         }
         str++;
     }
 
-    if (*str != '\0') {
-        return -1;
-    }
-
-    *out = negative ? -result : result;
-    return 0;
+    return negative ? -result : result;
 }
