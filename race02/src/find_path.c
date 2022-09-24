@@ -14,7 +14,7 @@ t_list *find_path(t_map *map, t_point *exit) {
         return NULL;
     }
 
-    mx_push_back(&path, exit);
+    mx_push_back(&path, new_point(exit->x, exit->y));
 
     while (map->points[current->x][current->y] != 0) {        
         for (int i = 0; i < 4; i++) {

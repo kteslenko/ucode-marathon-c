@@ -28,6 +28,7 @@ t_map *parse_map(char *map_str) {
             map->width = mx_strlen(rows[map->height]);
         }
         else if (mx_strlen(rows[map->height]) != map->width) {
+            free(map);
             return NULL;
         }
     }
@@ -43,6 +44,11 @@ t_map *parse_map(char *map_str) {
                 map->points[j][i] = 0;                
             }
             else {
+                for (int i = 0; i < map->width; i++) {
+                    free(map->points[i]);
+                }
+                free(map->points);
+                free(map);
                 return NULL;
             }
         }

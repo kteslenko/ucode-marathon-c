@@ -76,6 +76,11 @@ int main(int argc, char *argv[]) {
             mx_printint(mx_list_size(path) - 1);
             mx_printstr("\n");
 
+            for (int i = 0; i < map->width; i++) {
+                free(map->points[i]);
+            }
+            free(map->points);
+
             map->points = temp;
 
             while (path != NULL) {
@@ -111,11 +116,15 @@ int main(int argc, char *argv[]) {
 
     free(map_str);
     free(entry);
+    free(exit);
 
-    for (int i = 0; i < map->width; i++) {
-        free(map->points[i]);
+    if (map != NULL) {
+        for (int i = 0; i < map->width; i++) {
+            free(map->points[i]);
+        }
+        free(map->points);
+        free(map);
     }
-    free(map->points);
 }
 
 
