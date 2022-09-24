@@ -1,14 +1,13 @@
 #include "../inc/header.h"
 
 static bool check_bounds(t_map *map, t_point *point) {
-    return point->x > 0
-        && point->y > 0
+    return point->x >= 0
+        && point->y >= 0
         && point->x < map->width
         && point->y < map->height;
 }
 
 int main(int argc, char *argv[]) {
-
     if (argc != 6 ) {
         mx_printerr("usage: ./way_home [file_name] [x1] [y1] [x2] [y2]\n");
         return -1;
@@ -62,48 +61,61 @@ int main(int argc, char *argv[]) {
         map->points = lee(map, entry);
         t_list *path = find_path(map, exit);
         t_list *max = get_max_distance(map);
-        map->points = temp;
 
         if (path == NULL) {
             mx_printerr("route not found\n");
             status = false;
         }
-    }
+        else {
+            t_point *max_point = (t_point*)max->data;
 
-    
+            mx_printstr("dist=");
+            mx_printint(map->points[max_point->x][max_point->y]);
+            mx_printstr("\n");
+            mx_printstr("exit=");
+            mx_printint(mx_list_size(path) - 1);
+            mx_printstr("\n");
 
-    /* 
+            map->points = temp;
 
-    printf("width: %d\t height: %d\n", map->height, map->height);
-    
-    for (int i = 0; i < map->height; i++) {
-        for (int j = 0; j < map->width; j++) {
-            printf("%d", map->points[j][i]);
+            while (path != NULL) {
+                t_point *point = (t_point*)path->data;
+
+                map->points[point->x][point->y] = 2;
+                free(point);
+                path = path->next;
+            }
+            mx_clear_list(&path);
+
+            while (max != NULL) {
+                t_point *point = (t_point*)max->data;
+                
+                if (map->points[point->x][point->y] == 2) {
+                    map->points[point->x][point->y] = 4;
+                }
+                else {
+                    map->points[point->x][point->y] = 3;
+                }
+
+                free(point);
+                max = max->next;
+            }
+            mx_clear_list(&max);
         }
-        printf("\n");
     }
-    printf("\n");
-    printf("\n");
-
-    t_point entry = {1, 1};
-
-    map->points = lee(map, &entry);
-
-    for (int i = 0; i < map->height; i++) {
-        for (int j = 0; j < map->width; j++) {
-            printf("%d \t", map->points[j][i]);
-        }
-        printf("\n");
+        
+    if (status
+        && !write_map("path.txt", map)) {
+        mx_printerr("error\n");
     }
-    
-    printf("\n");
-    printf("\n");
 
-    t_point exit = {3, 3};
+    free(map_str);
+    free(entry);
 
-    t_list *list = find_path(map, &exit);
-    mx_foreach_list(list, *print_point);
-    */
+    for (int i = 0; i < map->width; i++) {
+        free(map->points[i]);
+    }
+    free(map->points);
 }
 
 

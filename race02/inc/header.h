@@ -40,7 +40,4 @@ int **lee(t_map *map, t_point *entry);
 t_list *get_max_distance(t_map *map);
 t_list *find_path(t_map *map, t_point *exit);
 int **arr(int row, int col);
-
-
-
-
+bool write_map(const char *filename, t_map *map);

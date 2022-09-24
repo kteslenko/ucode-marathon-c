@@ -53,6 +53,22 @@ t_map *parse_map(char *map_str) {
     return map;
 }
 
-t_map *write_map(const char *filename, t_map *map) {
+bool write_map(const char *filename, t_map *map) {
+    int file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+    static const char chars[] = {'.', '#', '*', 'D', 'X'};
 
+    if (file == -1) {
+        return false;
+    }
+
+    for (int i = 0; i < map->height; i++) {
+        for (int j = 0; j < map->width; j++) {
+            int idx = map->points[j][i];
+            write(file, &chars[idx], 1);
+        }
+        write(file, "\n", 1);
+    }
+
+    close(file);
+    return true;
 }
