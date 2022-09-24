@@ -1,4 +1,4 @@
-#include "../inc/header.h"
+#include "header.h"
 
 static bool check_bounds(t_map *map, t_point *point) {
     return point->x >= 0
